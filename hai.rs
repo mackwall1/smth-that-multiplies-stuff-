@@ -22,7 +22,6 @@ fn main() {
     let mut  ay:String = String::new();
     let mut az:String = String::new();
 
-    println!("DECIMAL NUMBERS AREN'T SUPPORTED YET! i'll add support for them later! :3");
 
     println!("input for x?");
 
@@ -42,9 +41,9 @@ fn main() {
          .read_line(&mut az)
          .expect("what?");
 
-    let ax:i32 = ax.trim().parse().expect("X IS NOT A NUMBER!");
-    let ay:i32 = ay.trim().parse().expect("Y IS NOT A NUMBER!");
-    let az:i32 = az.trim().parse().expect("Z IS NOT A NUMBER!");
+    let ax:f64 = ax.trim().parse().expect("X IS NOT A NUMBER!");
+    let ay:f64 = ay.trim().parse().expect("Y IS NOT A NUMBER!");
+    let az:f64 = az.trim().parse().expect("Z IS NOT A NUMBER!");
 
     println!("now that that's done, let's add your second set of numbers!");
 
@@ -70,28 +69,55 @@ fn main() {
         .read_line(&mut bz)
         .expect("what?");
 
-    let bx:i32 = bx.trim().parse().expect("2ND X IS NOT A NUMBER!");
-    let by:i32 = by.trim().parse().expect("2ND Y IS NOT A NUMBER!");
-    let bz:i32 = bz.trim().parse().expect("2ND Z IS NOT A NUMBER!");
+    let bx:f64 = bx.trim().parse().expect("2ND X IS NOT A NUMBER!");
+    let by:f64 = by.trim().parse().expect("2ND Y IS NOT A NUMBER!");
+    let bz:f64 = bz.trim().parse().expect("2ND Z IS NOT A NUMBER!");
 
     println!("now we multiply!");
 
-    let xa = ax * bx;
-    let xb = ax * by;
-    let xc = ax * bz;
+    let xa:f64 = ax * bx;
+    let xb:f64 = ax * by;
+    let xc:f64 = ax * bz;
 
-    let ya:i32 = ay * bx;
-    let yb:i32 = ay * by;
-    let yc:i32 = ay * bz;
+    let ya:f64 = ay * bx;
+    let yb:f64 = ay * by;
+    let yc:f64 = ay * bz;
 
-    let za:i32 = az * bx;
-    let zb:i32 = az * by;
-    let zc:i32 = az * bz;
+    let za:f64 = az * bx;
+    let zb:f64 = az * by;
+    let zc:f64 = az * bz;
 
     println!("alright! here are the results!:3 :");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating.");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating..");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating...");
+    park_timeout(Duration::new(1, 0));
     println!("x= {xa}, {xb}, {xc}");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating.");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating..");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating...");
+    park_timeout(Duration::new(1, 0));
     println!("y= {ya}, {yb}, {yc}");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating.");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating..");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating...");
+    park_timeout(Duration::new(1, 0));
     println!("z= {za}, {zb}, {zc}");
+    park_timeout(Duration::new(1, 0));
+    println!("it looks like this! :3 :
+     x:{xa}                  y:{ya}                   z:{za}
+       {xb}                    {yb}                     {zb}
+       {xc}                   {yc}                     {zc}
+    ");
 
 
 
