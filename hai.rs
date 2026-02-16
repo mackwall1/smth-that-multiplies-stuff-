@@ -2,6 +2,22 @@ use std::thread::park_timeout;
 use std::time::Duration;
 use std::io;
 
+fn timeout() {
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating.");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating..");
+    park_timeout(Duration::new(1, 0));
+    println!("Calculating...");
+    park_timeout(Duration::new(1, 0));
+}
+
+fn input(unit: &mut String) {
+    io::stdin()
+        .read_line( {unit})
+        .expect("what?");
+}
+
 fn main() {
     let mut x = 5;
     let x = 5;
@@ -18,28 +34,22 @@ fn main() {
     println!("let me try something...");
 
     println!("input some numbers!");
-    let mut ax:String = String::new();
-    let mut  ay:String = String::new();
-    let mut az:String = String::new();
+    let mut ax = String::new();
+    let mut  ay = String::new();
+    let mut az= String::new();
 
 
     println!("input for x?");
 
-    io::stdin()
-            .read_line(&mut ax)
-            .expect("what?");
+    input(&mut ax);
 
     println!("input for y?");
 
-    io::stdin()
-        .read_line(&mut ay)
-        .expect("what?");
+    input(&mut ay);
 
     println!("input for z?");
 
-    io::stdin()
-         .read_line(&mut az)
-         .expect("what?");
+    input(&mut az);
 
     let ax:f64 = ax.trim().parse().expect("X IS NOT A NUMBER!");
     let ay:f64 = ay.trim().parse().expect("Y IS NOT A NUMBER!");
@@ -47,27 +57,21 @@ fn main() {
 
     println!("now that that's done, let's add your second set of numbers!");
 
-    let mut bx:String = String::new();
-    let mut by:String = String::new();
-    let mut bz:String = String::new();
+    let mut bx= String::new();
+    let mut by = String::new();
+    let mut bz = String::new();
 
     println!("input for 2nd x?");
 
-    io::stdin()
-       .read_line(&mut bx)
-       .expect("what?");
+    input(&mut bx);
 
     println!("input for 2nd y?");
 
-    io::stdin()
-       .read_line(&mut by)
-       .expect("what?");
+    input(&mut by);
 
     println!("input for 2nd z?");
 
-    io::stdin()
-        .read_line(&mut bz)
-        .expect("what?");
+    input(&mut bz);
 
     let bx:f64 = bx.trim().parse().expect("2ND X IS NOT A NUMBER!");
     let by:f64 = by.trim().parse().expect("2ND Y IS NOT A NUMBER!");
@@ -88,35 +92,17 @@ fn main() {
     let zc:f64 = az * bz;
 
     println!("alright! here are the results!:3 :");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating.");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating..");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating...");
-    park_timeout(Duration::new(1, 0));
+    timeout();
     println!("x= {xa}, {xb}, {xc}");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating.");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating..");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating...");
-    park_timeout(Duration::new(1, 0));
+    timeout();
     println!("y= {ya}, {yb}, {yc}");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating.");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating..");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating...");
-    park_timeout(Duration::new(1, 0));
+    timeout();
     println!("z= {za}, {zb}, {zc}");
     park_timeout(Duration::new(1, 0));
     println!("it looks like this! :3 :
-     x:{xa}                  y:{ya}                   z:{za}
-       {xb}                    {yb}                     {zb}
-       {xc}                   {yc}                     {zc}
+     \x1b[91mx\x1b[0m:{xa}                 \x1b[92my\x1b[0m:{ya}                  \x1b[93mz\x1b[0m:{za}
+     {xb}                   {yb}                   {zb}
+     {xc}                   {yc}                   {zc}
     ");
 
 
