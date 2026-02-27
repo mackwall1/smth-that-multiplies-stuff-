@@ -4,15 +4,7 @@ use std::io;
 use rodio::{MixerDeviceSink, Player};
 use rodio::source::{Amplify, SineWave, Source, TakeDuration};
 
-fn timeout() {
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating.");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating..");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating...");
-    park_timeout(Duration::new(1, 0));
-}
+
 
 fn input(unit: &mut String) {
     io::stdin()
@@ -30,19 +22,6 @@ fn play_audio(frequency: f32, duration: f64) {
 }
 
 fn main() {
-    let x = 5;
-    let x = 5;
-    println!("the value of x is {x}! :3");
-    {
-        let x = 77;
-        println!("wha- ughh.. i just told you! the value of x is {x}- wha- what? IT CHANGED?");
-    }
-    println!("\n\x1b[91mwhat... it can't be!\x1b[0m");
-    park_timeout(Duration::new(2, 0));
-    println!("i'm going to try again...");
-    park_timeout(Duration::new(1, 0));
-    println!("the value of \x1b[91mx\x1b[0m is hopefully... {x}... \x1b[92mIT WORKS!\x1b[0m");
-    println!("let me try something...");
 
     println!("input some numbers!");
     let mut ax = String::new();
@@ -103,13 +82,10 @@ fn main() {
     let zc:f64 = az * bz;
 
     println!("alright! here are the results!:3 :");
-    timeout();
     play_audio(440.0, 0.10);
     println!("x= {xa}, {xb}, {xc}");
-    timeout();
     play_audio(480.0, 0.10);
     println!("y= {ya}, {yb}, {yc}");
-    timeout();
     play_audio(500.0, 0.10);
     println!("z= {za}, {zb}, {zc}");
     park_timeout(Duration::new(1, 0));
