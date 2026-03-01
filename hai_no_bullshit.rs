@@ -69,30 +69,48 @@ fn main() {
 
     println!("now we multiply!");
 
-    let xa:f64 = ax * bx;
-    let xb:f64 = ax * by;
-    let xc:f64 = ax * bz;
+    let a:[f64; 3] = [ax * bx, ax * by, ax * bz];
 
-    let ya:f64 = ay * bx;
-    let yb:f64 = ay * by;
-    let yc:f64 = ay * bz;
+    let b:[f64; 3] = [ay * bx, ay * by, ay * bz];
 
-    let za:f64 = az * bx;
-    let zb:f64 = az * by;
-    let zc:f64 = az * bz;
+    let c:[f64; 3] = [az * bx, az * by, az * bz];
 
     println!("alright! here are the results!:3 :");
     play_audio(440.0, 0.10);
-    println!("x= {xa}, {xb}, {xc}");
+    println!("x= {}, {}, {}" ,a[0], a[1], a[2]);
     play_audio(480.0, 0.10);
-    println!("y= {ya}, {yb}, {yc}");
+    println!("y= {}, {}, {}" ,b[0], b[1], b[2]);
     play_audio(500.0, 0.10);
-    println!("z= {za}, {zb}, {zc}");
+    println!("z= {}, {}, {}" ,c[0], c[1], c[2]);
     park_timeout(Duration::new(1, 0));
     println!("it looks like this! :3 :
-     \x1b[91mx\x1b[0m:{xa}                 \x1b[92my\x1b[0m:{ya}                  \x1b[93mz\x1b[0m:{za}
-     {xb}                   {yb}                   {zb}
-     {xc}                   {yc}                   {zc}
-    ");
-    
+     \x1b[91mx\x1b[0m:{}                 \x1b[92my\x1b[0m:{}                  \x1b[93mz\x1b[0m:{}
+     {}                   {}                   {}
+     {}                   {}                   {}
+    " ,a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
+
+    if ax == 0.0 {
+        println!("1st x was zero, so values multiplied by it is zero :c");
+        play_audio(300.0, 0.10);
+    }
+    if ay == 0.0 {
+        println!("1st y was zero, so values multiplied by it is zero :c");
+        play_audio(300.0, 0.10);
+    }
+    if az == 0.0 {
+        println!("1st z was zero, so values multiplied by it is zero :c");
+        play_audio(300.0, 0.10);
+    }
+    if bx == 0.0 {
+        println!("the second x was zero, so values multiplied by it is zero :c");
+        play_audio(350.0, 0.10);
+    }
+    if by == 0.0 {
+        println!("the second y was zero, so values multiplied by it is zero :c");
+        play_audio(350.0, 0.10);
+    }
+    if bz == 0.0 {
+        println!("the second z was zero, so values multiplied by it is zero :c");
+        play_audio(350.0, 0.10);
+    }
 }
