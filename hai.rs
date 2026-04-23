@@ -1,140 +1,107 @@
-use std::thread::park_timeout;
+use std::{io, thread};
 use std::time::Duration;
-use std::io;
-use rodio::{MixerDeviceSink, Player};
-use rodio::source::{Amplify, SineWave, Source, TakeDuration};
+use std::thread::sleep;
 
-fn timeout() {
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating.");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating..");
-    park_timeout(Duration::new(1, 0));
-    println!("Calculating...");
-    park_timeout(Duration::new(1, 0));
+fn eep(time: u64) {
+    thread::sleep(Duration::from_secs(time))
 }
 
-fn input(unit: &mut String) {
-    io::stdin()
-        .read_line( {unit})
-        .expect("what?");
-}
 
-fn play_audio(frequency: f32, duration: f64) {
-    let mut handle = rodio::DeviceSinkBuilder::open_default_sink().expect("open default audio stream!!!");
-    let player = Player::connect_new(&handle.mixer());
-    let source = SineWave::new({frequency} as f32).take_duration(Duration::from_secs_f64(duration)).amplify(0.25);
-    player.append(source);
-    player.sleep_until_end();
-    handle.log_on_drop(false)
+fn inp(number: &mut String) {
+    io::stdin().read_line(number).expect("failed to read line!");
 }
 
 fn main() {
-    let x = 5;
-    let x = 5;
-    println!("the value of x is {x}! :3");
-    {
-        let x = 77;
-        println!("wha- ughh.. i just told you! the value of x is {x}- wha- what? IT CHANGED?");
+    println!("welcome to HAI v2.0! it still sucks!!!");
+    println!("now, if you've been 'using' or inspecting HAI before v2.0, you know what this does.");
+    println!("if not, welp, in versions before 2.0, this was only multiplication, now it's multiplication, addition blah blah blah...");
+    println!("all these happen between 6 numbers, 1st 3 numbers do math stuff with the other 3, like this:");
+    println!("x * x1, x * y1, x * z1... blah blah blah, but this time it's with the other math stuff, so have fun! :3");
+
+    eep(1);
+
+    println!("alright, enter a NUMBER for x!!!");
+
+    let mut x = String::new();                                                  //this is x!
+    inp(&mut x);                                                                //this is where you *hopefully* enter a number
+    let rx:f64 = x.trim().parse().expect("it's supposed to be a number 3:");    //this where your number gets converted into a... number
+                                                                                //... or where you get yelled at for not entering a number
+    eep(1);
+
+    println!("now do it for y...");
+
+    let mut y = String::new();
+    inp(&mut y);
+    let ry:f64 = y.trim().parse().expect("dude, a NUMBER, please!");
+
+    println!("now for z...");
+
+    let mut z = String::new();
+    inp(&mut z);
+    let rz:f64 = z.trim().parse().expect("you're never gonna learn how to enter a number, will you?");
+
+    if (rx, ry, rz) == (0.0, 0.0, 0.0) {
+        println!("just so you know, x, y and z are all zero's!");
     }
-    println!("\n\x1b[91mwhat... it can't be!\x1b[0m");
-    park_timeout(Duration::new(2, 0));
-    println!("i'm going to try again...");
-    park_timeout(Duration::new(1, 0));
-    println!("the value of \x1b[91mx\x1b[0m is hopefully... {x}... \x1b[92mIT WORKS!\x1b[0m");
-    println!("let me try something...");
 
-    println!("input some numbers!");
-    let mut ax = String::new();
-    let mut  ay = String::new();
-    let mut az= String::new();
+    eep(1);
 
+    println!("if you're here, that means you entered numbers for x, y and z! yay!!!!! :3");
 
-    println!("input for x?");
+    eep(1);
 
-    input(&mut ax);
+    println!("you know how this goes, enter a number for the second x...");
 
-    println!("input for y?");
+    let mut x1 = String::new();
+    inp(&mut x1);
+    let rx1:f64 = x1.trim().parse().expect("you have to be trolling .w.");
 
-    input(&mut ay);
+    println!("alright, now the 2nd y...");
 
-    println!("input for z?");
+    let mut y1 = String::new();
+    inp(&mut y1);
+    let ry1:f64 = y1.trim().parse().expect("yup, you're trolling. x_x");
 
-    input(&mut az);
+    println!("now do it for z, the 2nd one of course");
 
-    let ax:f64 = ax.trim().parse().expect("X IS NOT A NUMBER!");
-    let ay:f64 = ay.trim().parse().expect("Y IS NOT A NUMBER!");
-    let az:f64 = az.trim().parse().expect("Z IS NOT A NUMBER!");
+    let mut z1 = String::new();
+    inp(&mut z1);
+    let rz1:f64 = z1.trim().parse().expect("do you know what numbers are?");
 
-    println!("now that that's done, let's add your second set of numbers!");
+    eep(1);
 
-    let mut bx= String::new();
-    let mut by = String::new();
-    let mut bz = String::new();
+    println!("ok, now you will enter a mathematical operator, such as '*, +, -, /' and not anything else, please. .w.");
 
-    println!("input for 2nd x?");
+    let mut opr = String::new();
+    inp(&mut opr);
+    let op = opr.trim();
 
-    input(&mut bx);
-
-    println!("input for 2nd y?");
-
-    input(&mut by);
-
-    println!("input for 2nd z?");
-
-    input(&mut bz);
-
-    let bx:f64 = bx.trim().parse().expect("2ND X IS NOT A NUMBER!");
-    let by:f64 = by.trim().parse().expect("2ND Y IS NOT A NUMBER!");
-    let bz:f64 = bz.trim().parse().expect("2ND Z IS NOT A NUMBER!");
-
-    println!("now we multiply!");
-
-    let a:[f64; 3] = [ax * bx, ax * by, ax * bz];
-
-    let b:[f64; 3] = [ay * bx, ay * by, ay * bz];
-
-    let c:[f64; 3] = [az * bx, az * by, az * bz];
-
-    println!("alright! here are the results!:3 :");
-    timeout();
-    play_audio(440.0, 0.10);
-    println!("x= {}, {}, {}" ,a[0], a[1], a[2]);
-    timeout();
-    play_audio(480.0, 0.10);
-    println!("y= {}, {}, {}" ,b[0], b[1], b[2]);
-    timeout();
-    play_audio(500.0, 0.10);
-    println!("z= {}, {}, {}" ,c[0], c[1], c[2]);
-    park_timeout(Duration::new(1, 0));
-    println!("it looks like this! :3 :
-     \x1b[91mx\x1b[0m:{}                 \x1b[92my\x1b[0m:{}                  \x1b[93mz\x1b[0m:{}
-     {}                   {}                   {}
-     {}                   {}                   {}
-    " ,a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
-
-    if ax == 0.0 {
-        println!("1st x was zero, so values multiplied by it is zero :c");
-        play_audio(300.0, 0.10);
+    match op {
+        "*" => { let xtxyz:[f64;3] = [rx * rx1, rx * ry1, rx * rz1];
+            let ytxyz:[f64;3] = [ry * rx1, ry * ry1, ry * rz1];
+            let ztxyz:[f64;3] = [rz * rx1, rz * ry1, rz * rz1];
+            println!("x: {} y: {} z:{}
+   {}    {}   {}
+   {}    {}   {}" ,xtxyz[0], xtxyz[1], xtxyz[2], ytxyz[0], ytxyz[1], ytxyz[2], ztxyz[0], ztxyz[1], ztxyz[2]); eep(1);}
+        "/" => { let xtxyz:[f64;3] = [rx / rx1, rx / ry1, rx / rz1];
+            let ytxyz:[f64;3] = [ry / rx1, ry / ry1, ry / rz1];
+            let ztxyz:[f64;3] = [rz / rx1, rz / ry1, rz / rz1];
+            println!("x: {} y: {} z:{}
+   {}    {}   {}
+   {}    {}   {}" ,xtxyz[0], xtxyz[1], xtxyz[2], ytxyz[0], ytxyz[1], ytxyz[2], ztxyz[0], ztxyz[1], ztxyz[2]); eep(1);}
+        "+" => { let xtxyz:[f64;3] = [rx + rx1, rx + ry1, rx + rz1];
+            let ytxyz:[f64;3] = [ry + rx1, ry + ry1, ry + rz1];
+            let ztxyz:[f64;3] = [rz + rx1, rz + ry1, rz + rz1];
+            println!("x: {} y: {} z:{}
+   {}    {}   {}
+   {}    {}   {}" ,xtxyz[0], xtxyz[1], xtxyz[2], ytxyz[0], ytxyz[1], ytxyz[2], ztxyz[0], ztxyz[1], ztxyz[2]); eep(1);}
+        "-" => { let xtxyz:[f64;3] = [rx - rx1, rx - ry1, rx - rz1];
+            let ytxyz:[f64;3] = [ry - rx1, ry - ry1, ry - rz1];
+            let ztxyz:[f64;3] = [rz - rx1, rz - ry1, rz - rz1];
+            println!("x: {} y: {} z:{}
+   {}    {}   {}
+   {}    {}   {}" ,xtxyz[0], xtxyz[1], xtxyz[2], ytxyz[0], ytxyz[1], ytxyz[2], ztxyz[0], ztxyz[1], ztxyz[2]); eep(1);}
+        _ => {println!("I TOLD YOU TO ENTER A MATHEMATICAL OPERATOR, WHY ARE YOU DOING THIS???"); eep(3); panic!("you deserve it.");}
     }
-    if ay == 0.0 {
-        println!("1st y was zero, so values multiplied by it is zero :c");
-        play_audio(300.0, 0.10);
-    }
-    if az == 0.0 {
-        println!("1st z was zero, so values multiplied by it is zero :c");
-        play_audio(300.0, 0.10);
-    }
-    if bx == 0.0 {
-        println!("the second x was zero, so values multiplied by it is zero :c");
-        play_audio(350.0, 0.10);
-    }
-    if by == 0.0 {
-        println!("the second y was zero, so values multiplied by it is zero :c");
-        play_audio(350.0, 0.10);
-    }
-    if bz == 0.0 {
-        println!("the second z was zero, so values multiplied by it is zero :c");
-        play_audio(350.0, 0.10);
-    }
+
 }
